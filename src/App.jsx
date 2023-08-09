@@ -5,6 +5,15 @@ const url = "https://course-api.com/react-tours-project";
 
 function App() {
   const [tours, setTours] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  if (loading) {
+    return (
+      <div>
+        <h3>Loading</h3>
+      </div>
+    );
+  }
 
   const tourData = async () => {
     try {
