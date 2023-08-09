@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Loading from "./Loading";
+import Tours from "./Tours";
 
 const url = "https://course-api.com/react-tours-project";
 
@@ -8,6 +9,22 @@ function App() {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchTours = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setLoading(false);
+      setTours(tours);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTours();
+  }, []);
   if (loading) {
     return (
       <div>
@@ -16,34 +33,9 @@ function App() {
     );
   }
 
-  const tourData = async () => {
-    try {
-      const response = await fetch(url, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setTours(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    tourData();
-  }, []);
-
   return (
     <div>
-      {tours.map((tour) => (
-        <ul key={tour.id}>
-          <li>{tour.name}</li>
-          <li>{tour.img}</li>
-          <li>{tour.description}</li>
-        </ul>
-      ))}
+      <Tours tours={tours} />
     </div>
   );
 }
