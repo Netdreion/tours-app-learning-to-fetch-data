@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Loading from "./Loading";
 
 const url = "https://course-api.com/react-tours-project";
 
@@ -10,7 +11,7 @@ function App() {
   if (loading) {
     return (
       <div>
-        <h3>Loading</h3>
+        <Loading />
       </div>
     );
   }
