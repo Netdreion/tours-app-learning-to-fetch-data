@@ -11,7 +11,7 @@ const Tours = ({ tours }) => {
           return (
             <ul key={tour.id}>
               <li>{tour.name}</li>
-              <li>{tour.img}</li>
+              <li>{tour.image}</li>
               <li>{tour.description}</li>
             </ul>
           );
