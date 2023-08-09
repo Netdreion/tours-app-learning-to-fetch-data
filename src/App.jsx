@@ -1,31 +1,41 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-const url = "https://jade-gnome-d8c89d.netlify.app/";
+
+const url = "https://course-api.com/react-tours-project";
 
 function App() {
-  const [tours, setTours] = [];
+  const [tours, setTours] = useState([]);
 
-  const url='https://tours-data.netlify.app/functions/myFunction'
+  const tourData = async () => {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setTours(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const tourData=async()=>{
-  try{
-    constresponse=await fetch(url)
-    const data=await response.json()
+  useEffect(() => {
+    tourData();
+  }, []);
 
-  }catch(error){
-    console.log(error)
-  }
-  setTours(data)
+  return (
+    <div>
+      {tours.map((tour) => (
+        <ul key={tour.id}>
+          <li>{tour.name}</li>
+          <li>{tour.img}</li>
+          <li>{tour.description}</li>
+        </ul>
+      ))}
+    </div>
+  );
 }
-
-useEffect(()=>{
-  tourData()
-},[])
-
- return(
-  <div>
-    
-  </div>
- )
 
 export default App;
