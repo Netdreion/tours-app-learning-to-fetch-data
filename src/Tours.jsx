@@ -8,11 +8,12 @@ const Tours = ({ tours }) => {
       <div className="underline"></div>
       <div>
         {tours.map((tour) => {
+          const { id, name, image, description } = tour;
           return (
-            <ul key={tour.id}>
-              <li>{tour.name}</li>
-              <li>{tour.image}</li>
-              <li>{tour.description}</li>
+            <ul key={id}>
+              <li>{name}</li>
+              <li>{image}</li>
+              <li>{description}</li>
             </ul>
           );
         })}
