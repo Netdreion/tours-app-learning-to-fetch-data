@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Tour from "./Tour";
 
 const Tours = ({ tours }) => {
   return (
@@ -10,14 +11,7 @@ const Tours = ({ tours }) => {
       </div>
       <div>
         {tours.map((tour) => {
-          const { id, name, image, description } = tour;
-          return (
-            <ul key={id}>
-              <li>{name}</li>
-              <li>{image}</li>
-              <li>{description}</li>
-            </ul>
-          );
+          return <Tour key={tour.id} {...tour} />;
         })}
       </div>
     </section>
