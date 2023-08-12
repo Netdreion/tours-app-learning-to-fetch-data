@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Tour from "./Tour";
 
-const Tours = ({ tours }) => {
+const Tours = ({ tours, deleteTours }) => {
   return (
     <section>
       <div className="title">
@@ -11,7 +11,7 @@ const Tours = ({ tours }) => {
       </div>
       <div>
         {tours.map((tour) => {
-          return <Tour key={tour.id} {...tour} />;
+          return <Tour key={tour.id} {...tour} deleteTours={deleteTours} />;
         })}
       </div>
     </section>

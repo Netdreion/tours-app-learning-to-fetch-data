@@ -10,7 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   const deleteTours = (id) => {
-    const updateTours = tours.filter((tour) => tour !== id);
+    const updateTours = tours.filter((tour) => tour.id !== id);
     setTours(updateTours);
   };
 
@@ -41,7 +41,7 @@ function App() {
 
   return (
     <main>
-      <Tours tours={tours} deleteTours={deleteTours()} />
+      <Tours tours={tours} deleteTours={deleteTours} />
     </main>
   );
 }
